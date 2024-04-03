@@ -1,0 +1,23 @@
+[2024-04-03 16:18:26,821 INFO] Missing transforms field for corpus_1 data, set to default: [].
+[2024-04-03 16:18:26,824 WARNING] Corpus corpus_1's weight should be given. We default it to 1 for you.
+[2024-04-03 16:18:26,824 INFO] Missing transforms field for valid data, set to default: [].
+[2024-04-03 16:18:26,825 INFO] Parsed 2 corpora from -data.
+[2024-04-03 16:18:26,826 INFO] Get special vocabs from Transforms: {'src': [], 'tgt': []}.
+Traceback (most recent call last):
+  File "/home/john.zheng1/software/miniconda3/envs/nlpa4/bin/onmt_train", line 8, in <module>
+    sys.exit(main())
+  File "/home/john.zheng1/software/miniconda3/envs/nlpa4/lib/python3.10/site-packages/onmt/bin/train.py", line 67, in main
+    train(opt)
+  File "/home/john.zheng1/software/miniconda3/envs/nlpa4/lib/python3.10/site-packages/onmt/bin/train.py", line 52, in train
+    train_process(opt, device_id=0)
+  File "/home/john.zheng1/software/miniconda3/envs/nlpa4/lib/python3.10/site-packages/onmt/train_single.py", line 162, in main
+    checkpoint, vocabs, transforms_cls = _init_train(opt)
+  File "/home/john.zheng1/software/miniconda3/envs/nlpa4/lib/python3.10/site-packages/onmt/train_single.py", line 107, in _init_train
+    vocabs = prepare_transforms_vocabs(opt, transforms_cls)
+  File "/home/john.zheng1/software/miniconda3/envs/nlpa4/lib/python3.10/site-packages/onmt/train_single.py", line 32, in prepare_transforms_vocabs
+    vocabs = build_vocab(opt, specials)
+  File "/home/john.zheng1/software/miniconda3/envs/nlpa4/lib/python3.10/site-packages/onmt/inputters/inputter.py", line 58, in build_vocab
+    tgt_vocab = _read_vocab_file(opt.tgt_vocab, opt.tgt_words_min_frequency)
+  File "/home/john.zheng1/software/miniconda3/envs/nlpa4/lib/python3.10/site-packages/onmt/inputters/inputter.py", line 122, in _read_vocab_file
+    if int(line.split(None, 1)[1]) >= min_count:
+ValueError: invalid literal for int() with base 10: 'in\t1'

@@ -1718,3 +1718,13 @@
 [2024-04-02 05:11:48,990 INFO] Non trainable parameters = {'torch.float32': 0, 'torch.float16': 0, 'torch.uint8': 0, 'torch.int8': 0}
 [2024-04-02 05:11:48,990 INFO]  * src vocab size = 912
 [2024-04-02 05:11:48,991 INFO]  * tgt vocab size = 6824
+[2024-04-03 16:07:40,704 INFO] Missing transforms field for corpus_1 data, set to default: [].
+[2024-04-03 16:07:40,706 WARNING] Corpus corpus_1's weight should be given. We default it to 1 for you.
+[2024-04-03 16:07:40,706 INFO] Missing transforms field for valid data, set to default: [].
+[2024-04-03 16:07:40,707 INFO] Parsed 2 corpora from -data.
+[2024-04-03 16:07:40,708 INFO] Get special vocabs from Transforms: {'src': [], 'tgt': []}.
+[2024-04-03 16:18:26,821 INFO] Missing transforms field for corpus_1 data, set to default: [].
+[2024-04-03 16:18:26,824 WARNING] Corpus corpus_1's weight should be given. We default it to 1 for you.
+[2024-04-03 16:18:26,824 INFO] Missing transforms field for valid data, set to default: [].
+[2024-04-03 16:18:26,825 INFO] Parsed 2 corpora from -data.
+[2024-04-03 16:18:26,826 INFO] Get special vocabs from Transforms: {'src': [], 'tgt': []}.

@@ -31,10 +31,10 @@ tgt_subword_model: target.model
 
 # Where to save the log file and the output models/checkpoints
 log_file: train.log
-save_model: models_early_stop/modelfren2
+save_model: models_scratch/modelv1
 
 # Stop training if it does not imporve after n validations
-early_stopping: 4
+# early_stopping: 4
 
 # Default: 5000 - Save a model checkpoint for each n
 save_checkpoint_steps: 1000
@@ -48,16 +48,16 @@ seed: 3435
 # Increase to 200000 or more for large datasets
 # For fine-tuning, add up the required steps to the original steps
 # decrease steps 
-train_steps: 200000
+train_steps: 5000
 
 # # Default: 10000 - Run validation after n steps
 # # once every 78 
-valid_steps: 78
+valid_steps: 500
 valid_metrics: ["BLEU"]
 
-# Early Stop
-early_stopping: 10
-early_stopping_criteria: "accuracy"
+# # Early Stop
+# early_stopping: 10
+# early_stopping_criteria: "accuracy"
 
 # early_stopping:
 #     # (optional) The target metric name (default: "loss").
@@ -79,10 +79,10 @@ gpu_ranks: [0]
 bucket_size: 262144
 num_workers: 0  # Default: 2, set to 0 when RAM out of memory
 batch_type: "sents"
-batch_size: 128   # Tokens per batch, change when CUDA out of memory
+batch_size: 256   # Tokens per batch, change when CUDA out of memory
 valid_batch_size: 2048
 max_generator_batches: 2
-accum_count: [8]
+accum_count: [4]
 accum_steps: [0]
 
 # Optimization
