@@ -1,0 +1,1317 @@
+[2024-04-03 19:54:45,696 INFO] Missing transforms field for corpus_1 data, set to default: [].
+[2024-04-03 19:54:45,697 WARNING] Corpus corpus_1's weight should be given. We default it to 1 for you.
+[2024-04-03 19:54:45,697 INFO] Missing transforms field for valid data, set to default: [].
+[2024-04-03 19:54:45,697 INFO] Parsed 2 corpora from -data.
+[2024-04-03 19:54:45,699 INFO] Get special vocabs from Transforms: {'src': [], 'tgt': []}.
+[2024-04-03 19:54:45,712 INFO] The first 10 tokens of the vocabs are:['<unk>', '<blank>', '<s>', '</s>', 'li', 'e', 'mi', 'jan', 'ni', 'tawa']
+[2024-04-03 19:54:45,712 INFO] The decoder start token is: <s>
+[2024-04-03 19:54:45,712 INFO] Building model...
+[2024-04-03 19:54:46,742 INFO] Switching model to float32 for amp/apex_amp
+[2024-04-03 19:54:46,742 INFO] Non quantized layer compute is fp16
+[2024-04-03 19:54:46,867 INFO] NMTModel(
+  (encoder): TransformerEncoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(944, 128, padding_idx=1)
+        )
+        (pe): PositionalEncoding()
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+    (transformer): ModuleList(
+      (0-1): 2 x TransformerEncoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=128, out_features=128, bias=False)
+          (linear_values): Linear(in_features=128, out_features=128, bias=False)
+          (linear_query): Linear(in_features=128, out_features=128, bias=False)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=128, out_features=128, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=128, out_features=512, bias=False)
+          (w_2): Linear(in_features=512, out_features=128, bias=False)
+          (layer_norm): LayerNorm((128,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm): LayerNorm((128,), eps=1e-06, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+    )
+    (layer_norm): LayerNorm((128,), eps=1e-06, elementwise_affine=True)
+  )
+  (decoder): TransformerDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(7096, 128, padding_idx=1)
+        )
+        (pe): PositionalEncoding()
+      )
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+    (layer_norm): LayerNorm((128,), eps=1e-06, elementwise_affine=True)
+    (transformer_layers): ModuleList(
+      (0-1): 2 x TransformerDecoderLayer(
+        (self_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=128, out_features=128, bias=False)
+          (linear_values): Linear(in_features=128, out_features=128, bias=False)
+          (linear_query): Linear(in_features=128, out_features=128, bias=False)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=128, out_features=128, bias=False)
+        )
+        (feed_forward): PositionwiseFeedForward(
+          (w_1): Linear(in_features=128, out_features=512, bias=False)
+          (w_2): Linear(in_features=512, out_features=128, bias=False)
+          (layer_norm): LayerNorm((128,), eps=1e-06, elementwise_affine=True)
+          (dropout_1): Dropout(p=0.1, inplace=False)
+          (dropout_2): Dropout(p=0.1, inplace=False)
+        )
+        (layer_norm_1): LayerNorm((128,), eps=1e-06, elementwise_affine=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+        (context_attn): MultiHeadedAttention(
+          (linear_keys): Linear(in_features=128, out_features=128, bias=False)
+          (linear_values): Linear(in_features=128, out_features=128, bias=False)
+          (linear_query): Linear(in_features=128, out_features=128, bias=False)
+          (softmax): Softmax(dim=-1)
+          (dropout): Dropout(p=0.1, inplace=False)
+          (final_linear): Linear(in_features=128, out_features=128, bias=False)
+        )
+        (layer_norm_2): LayerNorm((128,), eps=1e-06, elementwise_affine=True)
+      )
+    )
+  )
+  (generator): Linear(in_features=128, out_features=7096, bias=True)
+)
+[2024-04-03 19:54:46,868 INFO] encoder: 515328
+[2024-04-03 19:54:46,868 INFO] decoder: 2349752
+[2024-04-03 19:54:46,868 INFO] * number of parameters: 2865080
+[2024-04-03 19:54:46,869 INFO] Trainable parameters = {'torch.float32': 2865080, 'torch.float16': 0, 'torch.uint8': 0, 'torch.int8': 0}
+[2024-04-03 19:54:46,869 INFO] Non trainable parameters = {'torch.float32': 0, 'torch.float16': 0, 'torch.uint8': 0, 'torch.int8': 0}
+[2024-04-03 19:54:46,869 INFO]  * src vocab size = 944
+[2024-04-03 19:54:46,869 INFO]  * tgt vocab size = 7096
+[2024-04-03 19:54:47,412 INFO] Weighted corpora loaded so far:
+			* corpus_1: 1
+[2024-04-03 19:54:47,413 INFO] Starting training on GPU: [0]
+[2024-04-03 19:54:47,413 INFO] Start training loop and validate every 500 steps...
+[2024-04-03 19:54:47,413 INFO] Scoring with: None
+[2024-04-03 19:54:47,817 INFO] Weighted corpora loaded so far:
+			* corpus_1: 2
+[2024-04-03 19:54:48,211 INFO] Weighted corpora loaded so far:
+			* corpus_1: 3
+[2024-04-03 19:54:48,648 INFO] Weighted corpora loaded so far:
+			* corpus_1: 4
+[2024-04-03 19:54:48,851 INFO] Weighted corpora loaded so far:
+			* corpus_1: 5
+[2024-04-03 19:54:49,348 INFO] Weighted corpora loaded so far:
+			* corpus_1: 6
+[2024-04-03 19:54:49,550 INFO] Weighted corpora loaded so far:
+			* corpus_1: 7
+[2024-04-03 19:54:50,191 INFO] Weighted corpora loaded so far:
+			* corpus_1: 8
+[2024-04-03 19:54:50,392 INFO] Weighted corpora loaded so far:
+			* corpus_1: 9
+[2024-04-03 19:54:51,143 INFO] Weighted corpora loaded so far:
+			* corpus_1: 10
+[2024-04-03 19:54:51,345 INFO] Weighted corpora loaded so far:
+			* corpus_1: 11
+[2024-04-03 19:54:52,308 INFO] Weighted corpora loaded so far:
+			* corpus_1: 12
+[2024-04-03 19:54:52,510 INFO] Weighted corpora loaded so far:
+			* corpus_1: 13
+[2024-04-03 19:54:52,722 INFO] Weighted corpora loaded so far:
+			* corpus_1: 14
+[2024-04-03 19:54:52,925 INFO] Weighted corpora loaded so far:
+			* corpus_1: 15
+[2024-04-03 19:54:53,974 INFO] Weighted corpora loaded so far:
+			* corpus_1: 16
+[2024-04-03 19:55:12,768 INFO] Step 100/ 5000; acc: 15.2; ppl: 2019.1; xent: 7.6; lr: 0.00056; sents:  102363; bsz: 1884/1505/256; 29729/23739 tok/s;     25 sec;
+[2024-04-03 19:55:18,552 INFO] Weighted corpora loaded so far:
+			* corpus_1: 17
+[2024-04-03 19:55:18,759 INFO] Weighted corpora loaded so far:
+			* corpus_1: 18
+[2024-04-03 19:55:18,967 INFO] Weighted corpora loaded so far:
+			* corpus_1: 19
+[2024-04-03 19:55:19,174 INFO] Weighted corpora loaded so far:
+			* corpus_1: 20
+[2024-04-03 19:55:21,668 INFO] Weighted corpora loaded so far:
+			* corpus_1: 21
+[2024-04-03 19:55:21,870 INFO] Weighted corpora loaded so far:
+			* corpus_1: 22
+[2024-04-03 19:55:22,070 INFO] Weighted corpora loaded so far:
+			* corpus_1: 23
+[2024-04-03 19:55:22,272 INFO] Weighted corpora loaded so far:
+			* corpus_1: 24
+[2024-04-03 19:55:22,473 INFO] Weighted corpora loaded so far:
+			* corpus_1: 25
+[2024-04-03 19:55:22,674 INFO] Weighted corpora loaded so far:
+			* corpus_1: 26
+[2024-04-03 19:55:22,874 INFO] Weighted corpora loaded so far:
+			* corpus_1: 27
+[2024-04-03 19:55:25,851 INFO] Weighted corpora loaded so far:
+			* corpus_1: 28
+[2024-04-03 19:55:26,053 INFO] Weighted corpora loaded so far:
+			* corpus_1: 29
+[2024-04-03 19:55:26,256 INFO] Weighted corpora loaded so far:
+			* corpus_1: 30
+[2024-04-03 19:55:26,456 INFO] Weighted corpora loaded so far:
+			* corpus_1: 31
+[2024-04-03 19:55:39,683 INFO] Step 200/ 5000; acc: 27.8; ppl: 233.9; xent: 5.5; lr: 0.00112; sents:  102363; bsz: 1930/1538/256; 28684/22857 tok/s;     52 sec;
+[2024-04-03 19:55:50,648 INFO] Weighted corpora loaded so far:
+			* corpus_1: 32
+[2024-04-03 19:55:53,048 INFO] Weighted corpora loaded so far:
+			* corpus_1: 33
+[2024-04-03 19:55:53,248 INFO] Weighted corpora loaded so far:
+			* corpus_1: 34
+[2024-04-03 19:55:53,449 INFO] Weighted corpora loaded so far:
+			* corpus_1: 35
+[2024-04-03 19:55:53,640 INFO] Weighted corpora loaded so far:
+			* corpus_1: 36
+[2024-04-03 19:55:53,829 INFO] Weighted corpora loaded so far:
+			* corpus_1: 37
+[2024-04-03 19:55:54,016 INFO] Weighted corpora loaded so far:
+			* corpus_1: 38
+[2024-04-03 19:55:54,206 INFO] Weighted corpora loaded so far:
+			* corpus_1: 39
+[2024-04-03 19:55:57,024 INFO] Weighted corpora loaded so far:
+			* corpus_1: 40
+[2024-04-03 19:55:57,212 INFO] Weighted corpora loaded so far:
+			* corpus_1: 41
+[2024-04-03 19:55:57,419 INFO] Weighted corpora loaded so far:
+			* corpus_1: 42
+[2024-04-03 19:55:57,608 INFO] Weighted corpora loaded so far:
+			* corpus_1: 43
+[2024-04-03 19:55:57,798 INFO] Weighted corpora loaded so far:
+			* corpus_1: 44
+[2024-04-03 19:55:57,990 INFO] Weighted corpora loaded so far:
+			* corpus_1: 45
+[2024-04-03 19:55:58,181 INFO] Weighted corpora loaded so far:
+			* corpus_1: 46
+[2024-04-03 19:55:58,374 INFO] Weighted corpora loaded so far:
+			* corpus_1: 47
+[2024-04-03 19:56:09,144 INFO] Step 300/ 5000; acc: 42.2; ppl:  62.0; xent: 4.1; lr: 0.00168; sents:  102400; bsz: 1873/1498/256; 25429/20344 tok/s;     82 sec;
+[2024-04-03 19:56:20,402 INFO] Step 400/ 5000; acc: 55.7; ppl:  24.3; xent: 3.2; lr: 0.00224; sents:  102363; bsz: 1905/1517/256; 67697/53895 tok/s;     93 sec;
+[2024-04-03 19:56:25,735 INFO] Weighted corpora loaded so far:
+			* corpus_1: 48
+[2024-04-03 19:56:25,937 INFO] Weighted corpora loaded so far:
+			* corpus_1: 49
+[2024-04-03 19:56:26,140 INFO] Weighted corpora loaded so far:
+			* corpus_1: 50
+[2024-04-03 19:56:26,360 INFO] Weighted corpora loaded so far:
+			* corpus_1: 51
+[2024-04-03 19:56:26,584 INFO] Weighted corpora loaded so far:
+			* corpus_1: 52
+[2024-04-03 19:56:29,380 INFO] Weighted corpora loaded so far:
+			* corpus_1: 53
+[2024-04-03 19:56:29,576 INFO] Weighted corpora loaded so far:
+			* corpus_1: 54
+[2024-04-03 19:56:29,777 INFO] Weighted corpora loaded so far:
+			* corpus_1: 55
+[2024-04-03 19:56:29,977 INFO] Weighted corpora loaded so far:
+			* corpus_1: 56
+[2024-04-03 19:56:30,171 INFO] Weighted corpora loaded so far:
+			* corpus_1: 57
+[2024-04-03 19:56:30,358 INFO] Weighted corpora loaded so far:
+			* corpus_1: 58
+[2024-04-03 19:56:30,547 INFO] Weighted corpora loaded so far:
+			* corpus_1: 59
+[2024-04-03 19:56:33,677 INFO] Weighted corpora loaded so far:
+			* corpus_1: 60
+[2024-04-03 19:56:33,870 INFO] Weighted corpora loaded so far:
+			* corpus_1: 61
+[2024-04-03 19:56:34,060 INFO] Weighted corpora loaded so far:
+			* corpus_1: 62
+[2024-04-03 19:56:47,980 INFO] Step 500/ 5000; acc: 68.7; ppl:  12.5; xent: 2.5; lr: 0.00280; sents:  102400; bsz: 1873/1498/256; 27165/21722 tok/s;    121 sec;
+[2024-04-03 19:56:48,264 INFO] valid stats calculation
+                           took: 0.28370141983032227 s.
+[2024-04-03 19:56:48,977 INFO] The translation of the valid dataset for dynamic scoring
+                               took : 0.7120354175567627 s.
+[2024-04-03 19:56:48,977 INFO] UPDATING VALIDATION BLEU
+[2024-04-03 19:56:49,120 INFO] validation BLEU: 10.068599317829193
+[2024-04-03 19:56:49,121 INFO] Train perplexity: 98.1833
+[2024-04-03 19:56:49,121 INFO] Train accuracy: 41.8548
+[2024-04-03 19:56:49,121 INFO] Sentences processed: 511889
+[2024-04-03 19:56:49,121 INFO] Average bsz: 1893/1511/256
+[2024-04-03 19:56:49,121 INFO] Validation perplexity: 68.4357
+[2024-04-03 19:56:49,121 INFO] Validation accuracy: 44.2557
+[2024-04-03 19:56:59,767 INFO] Weighted corpora loaded so far:
+			* corpus_1: 63
+[2024-04-03 19:56:59,968 INFO] Weighted corpora loaded so far:
+			* corpus_1: 64
+[2024-04-03 19:57:02,570 INFO] Weighted corpora loaded so far:
+			* corpus_1: 65
+[2024-04-03 19:57:02,772 INFO] Weighted corpora loaded so far:
+			* corpus_1: 66
+[2024-04-03 19:57:02,968 INFO] Weighted corpora loaded so far:
+			* corpus_1: 67
+[2024-04-03 19:57:03,163 INFO] Weighted corpora loaded so far:
+			* corpus_1: 68
+[2024-04-03 19:57:03,356 INFO] Weighted corpora loaded so far:
+			* corpus_1: 69
+[2024-04-03 19:57:03,548 INFO] Weighted corpora loaded so far:
+			* corpus_1: 70
+[2024-04-03 19:57:06,439 INFO] Weighted corpora loaded so far:
+			* corpus_1: 71
+[2024-04-03 19:57:06,631 INFO] Weighted corpora loaded so far:
+			* corpus_1: 72
+[2024-04-03 19:57:06,830 INFO] Weighted corpora loaded so far:
+			* corpus_1: 73
+[2024-04-03 19:57:07,026 INFO] Weighted corpora loaded so far:
+			* corpus_1: 74
+[2024-04-03 19:57:07,219 INFO] Weighted corpora loaded so far:
+			* corpus_1: 75
+[2024-04-03 19:57:07,411 INFO] Weighted corpora loaded so far:
+			* corpus_1: 76
+[2024-04-03 19:57:07,602 INFO] Weighted corpora loaded so far:
+			* corpus_1: 77
+[2024-04-03 19:57:18,502 INFO] Step 600/ 5000; acc: 74.6; ppl:  10.1; xent: 2.3; lr: 0.00336; sents:  102363; bsz: 1906/1529/256; 24978/20041 tok/s;    151 sec;
+[2024-04-03 19:57:29,737 INFO] Step 700/ 5000; acc: 78.2; ppl:   8.8; xent: 2.2; lr: 0.00392; sents:  102363; bsz: 1907/1522/256; 67906/54177 tok/s;    162 sec;
+[2024-04-03 19:57:34,384 INFO] Weighted corpora loaded so far:
+			* corpus_1: 78
+[2024-04-03 19:57:34,600 INFO] Weighted corpora loaded so far:
+			* corpus_1: 79
+[2024-04-03 19:57:34,807 INFO] Weighted corpora loaded so far:
+			* corpus_1: 80
+[2024-04-03 19:57:35,003 INFO] Weighted corpora loaded so far:
+			* corpus_1: 81
+[2024-04-03 19:57:35,199 INFO] Weighted corpora loaded so far:
+			* corpus_1: 82
+[2024-04-03 19:57:38,062 INFO] Weighted corpora loaded so far:
+			* corpus_1: 83
+[2024-04-03 19:57:38,259 INFO] Weighted corpora loaded so far:
+			* corpus_1: 84
+[2024-04-03 19:57:38,454 INFO] Weighted corpora loaded so far:
+			* corpus_1: 85
+[2024-04-03 19:57:38,646 INFO] Weighted corpora loaded so far:
+			* corpus_1: 86
+[2024-04-03 19:57:38,847 INFO] Weighted corpora loaded so far:
+			* corpus_1: 87
+[2024-04-03 19:57:39,048 INFO] Weighted corpora loaded so far:
+			* corpus_1: 88
+[2024-04-03 19:57:39,244 INFO] Weighted corpora loaded so far:
+			* corpus_1: 89
+[2024-04-03 19:57:39,441 INFO] Weighted corpora loaded so far:
+			* corpus_1: 90
+[2024-04-03 19:57:42,711 INFO] Weighted corpora loaded so far:
+			* corpus_1: 91
+[2024-04-03 19:57:42,900 INFO] Weighted corpora loaded so far:
+			* corpus_1: 92
+[2024-04-03 19:57:43,090 INFO] Weighted corpora loaded so far:
+			* corpus_1: 93
+[2024-04-03 19:57:57,438 INFO] Step 800/ 5000; acc: 80.8; ppl:   7.8; xent: 2.1; lr: 0.00448; sents:  102363; bsz: 1909/1519/256; 27573/21929 tok/s;    190 sec;
+[2024-04-03 19:58:07,514 INFO] Weighted corpora loaded so far:
+			* corpus_1: 94
+[2024-04-03 19:58:07,723 INFO] Weighted corpora loaded so far:
+			* corpus_1: 95
+[2024-04-03 19:58:10,337 INFO] Weighted corpora loaded so far:
+			* corpus_1: 96
+[2024-04-03 19:58:10,532 INFO] Weighted corpora loaded so far:
+			* corpus_1: 97
+[2024-04-03 19:58:10,731 INFO] Weighted corpora loaded so far:
+			* corpus_1: 98
+[2024-04-03 19:58:10,930 INFO] Weighted corpora loaded so far:
+			* corpus_1: 99
+[2024-04-03 19:58:11,133 INFO] Weighted corpora loaded so far:
+			* corpus_1: 100
+[2024-04-03 19:58:11,331 INFO] Weighted corpora loaded so far:
+			* corpus_1: 101
+[2024-04-03 19:58:11,529 INFO] Weighted corpora loaded so far:
+			* corpus_1: 102
+[2024-04-03 19:58:14,580 INFO] Weighted corpora loaded so far:
+			* corpus_1: 103
+[2024-04-03 19:58:14,778 INFO] Weighted corpora loaded so far:
+			* corpus_1: 104
+[2024-04-03 19:58:14,974 INFO] Weighted corpora loaded so far:
+			* corpus_1: 105
+[2024-04-03 19:58:15,170 INFO] Weighted corpora loaded so far:
+			* corpus_1: 106
+[2024-04-03 19:58:15,360 INFO] Weighted corpora loaded so far:
+			* corpus_1: 107
+[2024-04-03 19:58:15,551 INFO] Weighted corpora loaded so far:
+			* corpus_1: 108
+[2024-04-03 19:58:27,189 INFO] Step 900/ 5000; acc: 84.6; ppl:   6.7; xent: 1.9; lr: 0.00504; sents:  102400; bsz: 1874/1499/256; 25191/20154 tok/s;    220 sec;
+[2024-04-03 19:58:38,435 INFO] Step 1000/ 5000; acc: 85.8; ppl:   6.5; xent: 1.9; lr: 0.00559; sents:  102363; bsz: 1893/1508/256; 67327/53626 tok/s;    231 sec;
+[2024-04-03 19:58:38,666 INFO] valid stats calculation
+                           took: 0.23112797737121582 s.
+[2024-04-03 19:58:39,240 INFO] The translation of the valid dataset for dynamic scoring
+                               took : 0.5733661651611328 s.
+[2024-04-03 19:58:39,240 INFO] UPDATING VALIDATION BLEU
+[2024-04-03 19:58:39,377 INFO] validation BLEU: 12.364777937208874
+[2024-04-03 19:58:39,378 INFO] Train perplexity: 27.7858
+[2024-04-03 19:58:39,378 INFO] Train accuracy: 61.3383
+[2024-04-03 19:58:39,378 INFO] Sentences processed: 1.02374e+06
+[2024-04-03 19:58:39,378 INFO] Average bsz: 1895/1513/256
+[2024-04-03 19:58:39,378 INFO] Validation perplexity: 71.6416
+[2024-04-03 19:58:39,378 INFO] Validation accuracy: 46.0645
+[2024-04-03 19:58:39,379 INFO] Saving checkpoint models_scratch/modelv1_step_1000.pt
+[2024-04-03 19:58:43,972 INFO] Weighted corpora loaded so far:
+			* corpus_1: 109
+[2024-04-03 19:58:44,170 INFO] Weighted corpora loaded so far:
+			* corpus_1: 110
+[2024-04-03 19:58:44,370 INFO] Weighted corpora loaded so far:
+			* corpus_1: 111
+[2024-04-03 19:58:44,569 INFO] Weighted corpora loaded so far:
+			* corpus_1: 112
+[2024-04-03 19:58:44,770 INFO] Weighted corpora loaded so far:
+			* corpus_1: 113
+[2024-04-03 19:58:47,587 INFO] Weighted corpora loaded so far:
+			* corpus_1: 114
+[2024-04-03 19:58:47,788 INFO] Weighted corpora loaded so far:
+			* corpus_1: 115
+[2024-04-03 19:58:47,986 INFO] Weighted corpora loaded so far:
+			* corpus_1: 116
+[2024-04-03 19:58:48,180 INFO] Weighted corpora loaded so far:
+			* corpus_1: 117
+[2024-04-03 19:58:48,380 INFO] Weighted corpora loaded so far:
+			* corpus_1: 118
+[2024-04-03 19:58:48,577 INFO] Weighted corpora loaded so far:
+			* corpus_1: 119
+[2024-04-03 19:58:48,771 INFO] Weighted corpora loaded so far:
+			* corpus_1: 120
+[2024-04-03 19:58:48,963 INFO] Weighted corpora loaded so far:
+			* corpus_1: 121
+[2024-04-03 19:58:52,167 INFO] Weighted corpora loaded so far:
+			* corpus_1: 122
+[2024-04-03 19:58:52,358 INFO] Weighted corpora loaded so far:
+			* corpus_1: 123
+[2024-04-03 19:59:07,506 INFO] Step 1100/ 5000; acc: 85.2; ppl:   6.7; xent: 1.9; lr: 0.00533; sents:  102363; bsz: 1910/1528/256; 26282/21020 tok/s;    260 sec;
+[2024-04-03 19:59:17,053 INFO] Weighted corpora loaded so far:
+			* corpus_1: 124
+[2024-04-03 19:59:17,263 INFO] Weighted corpora loaded so far:
+			* corpus_1: 125
+[2024-04-03 19:59:17,463 INFO] Weighted corpora loaded so far:
+			* corpus_1: 126
+[2024-04-03 19:59:20,118 INFO] Weighted corpora loaded so far:
+			* corpus_1: 127
+[2024-04-03 19:59:20,324 INFO] Weighted corpora loaded so far:
+			* corpus_1: 128
+[2024-04-03 19:59:20,527 INFO] Weighted corpora loaded so far:
+			* corpus_1: 129
+[2024-04-03 19:59:20,728 INFO] Weighted corpora loaded so far:
+			* corpus_1: 130
+[2024-04-03 19:59:20,930 INFO] Weighted corpora loaded so far:
+			* corpus_1: 131
+[2024-04-03 19:59:21,132 INFO] Weighted corpora loaded so far:
+			* corpus_1: 132
+[2024-04-03 19:59:21,337 INFO] Weighted corpora loaded so far:
+			* corpus_1: 133
+[2024-04-03 19:59:24,446 INFO] Weighted corpora loaded so far:
+			* corpus_1: 134
+[2024-04-03 19:59:24,643 INFO] Weighted corpora loaded so far:
+			* corpus_1: 135
+[2024-04-03 19:59:24,835 INFO] Weighted corpora loaded so far:
+			* corpus_1: 136
+[2024-04-03 19:59:25,028 INFO] Weighted corpora loaded so far:
+			* corpus_1: 137
+[2024-04-03 19:59:25,221 INFO] Weighted corpora loaded so far:
+			* corpus_1: 138
+[2024-04-03 19:59:25,414 INFO] Weighted corpora loaded so far:
+			* corpus_1: 139
+[2024-04-03 19:59:37,722 INFO] Step 1200/ 5000; acc: 88.1; ppl:   6.0; xent: 1.8; lr: 0.00510; sents:  102400; bsz: 1885/1500/256; 24956/19863 tok/s;    290 sec;
+[2024-04-03 19:59:48,849 INFO] Step 1300/ 5000; acc: 89.1; ppl:   5.8; xent: 1.8; lr: 0.00490; sents:  102400; bsz: 1887/1496/256; 67818/53788 tok/s;    301 sec;
+[2024-04-03 19:59:52,691 INFO] Weighted corpora loaded so far:
+			* corpus_1: 140
+[2024-04-03 19:59:52,892 INFO] Weighted corpora loaded so far:
+			* corpus_1: 141
+[2024-04-03 19:59:53,094 INFO] Weighted corpora loaded so far:
+			* corpus_1: 142
+[2024-04-03 19:59:53,291 INFO] Weighted corpora loaded so far:
+			* corpus_1: 143
+[2024-04-03 19:59:53,493 INFO] Weighted corpora loaded so far:
+			* corpus_1: 144
+[2024-04-03 19:59:53,690 INFO] Weighted corpora loaded so far:
+			* corpus_1: 145
+[2024-04-03 19:59:53,885 INFO] Weighted corpora loaded so far:
+			* corpus_1: 146
+[2024-04-03 19:59:54,080 INFO] Weighted corpora loaded so far:
+			* corpus_1: 147
+[2024-04-03 19:59:57,066 INFO] Weighted corpora loaded so far:
+			* corpus_1: 148
+[2024-04-03 19:59:57,265 INFO] Weighted corpora loaded so far:
+			* corpus_1: 149
+[2024-04-03 19:59:57,460 INFO] Weighted corpora loaded so far:
+			* corpus_1: 150
+[2024-04-03 19:59:57,651 INFO] Weighted corpora loaded so far:
+			* corpus_1: 151
+[2024-04-03 19:59:57,840 INFO] Weighted corpora loaded so far:
+			* corpus_1: 152
+[2024-04-03 19:59:58,035 INFO] Weighted corpora loaded so far:
+			* corpus_1: 153
+[2024-04-03 19:59:58,226 INFO] Weighted corpora loaded so far:
+			* corpus_1: 154
+[2024-04-03 20:00:15,946 INFO] Step 1400/ 5000; acc: 89.6; ppl:   5.7; xent: 1.7; lr: 0.00472; sents:  102363; bsz: 1890/1529/256; 27907/22566 tok/s;    329 sec;
+[2024-04-03 20:00:25,042 INFO] Weighted corpora loaded so far:
+			* corpus_1: 155
+[2024-04-03 20:00:25,244 INFO] Weighted corpora loaded so far:
+			* corpus_1: 156
+[2024-04-03 20:00:25,444 INFO] Weighted corpora loaded so far:
+			* corpus_1: 157
+[2024-04-03 20:00:25,644 INFO] Weighted corpora loaded so far:
+			* corpus_1: 158
+[2024-04-03 20:00:25,845 INFO] Weighted corpora loaded so far:
+			* corpus_1: 159
+[2024-04-03 20:00:28,631 INFO] Weighted corpora loaded so far:
+			* corpus_1: 160
+[2024-04-03 20:00:28,829 INFO] Weighted corpora loaded so far:
+			* corpus_1: 161
+[2024-04-03 20:00:29,030 INFO] Weighted corpora loaded so far:
+			* corpus_1: 162
+[2024-04-03 20:00:29,228 INFO] Weighted corpora loaded so far:
+			* corpus_1: 163
+[2024-04-03 20:00:29,430 INFO] Weighted corpora loaded so far:
+			* corpus_1: 164
+[2024-04-03 20:00:29,631 INFO] Weighted corpora loaded so far:
+			* corpus_1: 165
+[2024-04-03 20:00:29,825 INFO] Weighted corpora loaded so far:
+			* corpus_1: 166
+[2024-04-03 20:00:33,082 INFO] Weighted corpora loaded so far:
+			* corpus_1: 167
+[2024-04-03 20:00:33,273 INFO] Weighted corpora loaded so far:
+			* corpus_1: 168
+[2024-04-03 20:00:33,467 INFO] Weighted corpora loaded so far:
+			* corpus_1: 169
+[2024-04-03 20:00:43,564 INFO] Step 1500/ 5000; acc: 90.7; ppl:   5.4; xent: 1.7; lr: 0.00456; sents:  102363; bsz: 1919/1516/256; 27789/21955 tok/s;    356 sec;
+[2024-04-03 20:00:43,799 INFO] valid stats calculation
+                           took: 0.23446178436279297 s.
+[2024-04-03 20:00:44,398 INFO] The translation of the valid dataset for dynamic scoring
+                               took : 0.598717212677002 s.
+[2024-04-03 20:00:44,398 INFO] UPDATING VALIDATION BLEU
+[2024-04-03 20:00:44,547 INFO] validation BLEU: 11.593849637055605
+[2024-04-03 20:00:44,548 INFO] Train perplexity: 16.5836
+[2024-04-03 20:00:44,548 INFO] Train accuracy: 70.4024
+[2024-04-03 20:00:44,548 INFO] Sentences processed: 1.53563e+06
+[2024-04-03 20:00:44,548 INFO] Average bsz: 1896/1513/256
+[2024-04-03 20:00:44,548 INFO] Validation perplexity: 71.5323
+[2024-04-03 20:00:44,548 INFO] Validation accuracy: 46.9949
+[2024-04-03 20:00:55,593 INFO] Step 1600/ 5000; acc: 90.5; ppl:   5.5; xent: 1.7; lr: 0.00442; sents:  102363; bsz: 1899/1504/256; 63148/50028 tok/s;    368 sec;
+[2024-04-03 20:00:58,779 INFO] Weighted corpora loaded so far:
+			* corpus_1: 170
+[2024-04-03 20:01:01,366 INFO] Weighted corpora loaded so far:
+			* corpus_1: 171
+[2024-04-03 20:01:01,563 INFO] Weighted corpora loaded so far:
+			* corpus_1: 172
+[2024-04-03 20:01:01,761 INFO] Weighted corpora loaded so far:
+			* corpus_1: 173
+[2024-04-03 20:01:01,957 INFO] Weighted corpora loaded so far:
+			* corpus_1: 174
+[2024-04-03 20:01:02,154 INFO] Weighted corpora loaded so far:
+			* corpus_1: 175
+[2024-04-03 20:01:02,351 INFO] Weighted corpora loaded so far:
+			* corpus_1: 176
+[2024-04-03 20:01:02,547 INFO] Weighted corpora loaded so far:
+			* corpus_1: 177
+[2024-04-03 20:01:05,485 INFO] Weighted corpora loaded so far:
+			* corpus_1: 178
+[2024-04-03 20:01:05,683 INFO] Weighted corpora loaded so far:
+			* corpus_1: 179
+[2024-04-03 20:01:05,880 INFO] Weighted corpora loaded so far:
+			* corpus_1: 180
+[2024-04-03 20:01:06,075 INFO] Weighted corpora loaded so far:
+			* corpus_1: 181
+[2024-04-03 20:01:06,265 INFO] Weighted corpora loaded so far:
+			* corpus_1: 182
+[2024-04-03 20:01:06,457 INFO] Weighted corpora loaded so far:
+			* corpus_1: 183
+[2024-04-03 20:01:06,650 INFO] Weighted corpora loaded so far:
+			* corpus_1: 184
+[2024-04-03 20:01:06,846 INFO] Weighted corpora loaded so far:
+			* corpus_1: 185
+[2024-04-03 20:01:25,829 INFO] Step 1700/ 5000; acc: 91.4; ppl:   5.3; xent: 1.7; lr: 0.00429; sents:  102363; bsz: 1937/1554/256; 25630/20553 tok/s;    398 sec;
+[2024-04-03 20:01:34,506 INFO] Weighted corpora loaded so far:
+			* corpus_1: 186
+[2024-04-03 20:01:34,706 INFO] Weighted corpora loaded so far:
+			* corpus_1: 187
+[2024-04-03 20:01:34,904 INFO] Weighted corpora loaded so far:
+			* corpus_1: 188
+[2024-04-03 20:01:35,108 INFO] Weighted corpora loaded so far:
+			* corpus_1: 189
+[2024-04-03 20:01:35,308 INFO] Weighted corpora loaded so far:
+			* corpus_1: 190
+[2024-04-03 20:01:35,507 INFO] Weighted corpora loaded so far:
+			* corpus_1: 191
+[2024-04-03 20:01:38,474 INFO] Weighted corpora loaded so far:
+			* corpus_1: 192
+[2024-04-03 20:01:38,674 INFO] Weighted corpora loaded so far:
+			* corpus_1: 193
+[2024-04-03 20:01:38,873 INFO] Weighted corpora loaded so far:
+			* corpus_1: 194
+[2024-04-03 20:01:39,069 INFO] Weighted corpora loaded so far:
+			* corpus_1: 195
+[2024-04-03 20:01:39,265 INFO] Weighted corpora loaded so far:
+			* corpus_1: 196
+[2024-04-03 20:01:39,458 INFO] Weighted corpora loaded so far:
+			* corpus_1: 197
+[2024-04-03 20:01:39,650 INFO] Weighted corpora loaded so far:
+			* corpus_1: 198
+[2024-04-03 20:01:39,841 INFO] Weighted corpora loaded so far:
+			* corpus_1: 199
+[2024-04-03 20:01:43,120 INFO] Weighted corpora loaded so far:
+			* corpus_1: 200
+[2024-04-03 20:01:53,602 INFO] Step 1800/ 5000; acc: 93.3; ppl:   4.9; xent: 1.6; lr: 0.00417; sents:  102400; bsz: 1837/1471/256; 26463/21185 tok/s;    426 sec;
+[2024-04-03 20:02:04,640 INFO] Step 1900/ 5000; acc: 91.6; ppl:   5.3; xent: 1.7; lr: 0.00405; sents:  102363; bsz: 1928/1536/256; 69859/55680 tok/s;    437 sec;
+[2024-04-03 20:02:07,494 INFO] Weighted corpora loaded so far:
+			* corpus_1: 201
+[2024-04-03 20:02:07,693 INFO] Weighted corpora loaded so far:
+			* corpus_1: 202
+[2024-04-03 20:02:07,892 INFO] Weighted corpora loaded so far:
+			* corpus_1: 203
+[2024-04-03 20:02:08,095 INFO] Weighted corpora loaded so far:
+			* corpus_1: 204
+[2024-04-03 20:02:08,292 INFO] Weighted corpora loaded so far:
+			* corpus_1: 205
+[2024-04-03 20:02:11,090 INFO] Weighted corpora loaded so far:
+			* corpus_1: 206
+[2024-04-03 20:02:11,291 INFO] Weighted corpora loaded so far:
+			* corpus_1: 207
+[2024-04-03 20:02:11,491 INFO] Weighted corpora loaded so far:
+			* corpus_1: 208
+[2024-04-03 20:02:11,691 INFO] Weighted corpora loaded so far:
+			* corpus_1: 209
+[2024-04-03 20:02:11,895 INFO] Weighted corpora loaded so far:
+			* corpus_1: 210
+[2024-04-03 20:02:12,112 INFO] Weighted corpora loaded so far:
+			* corpus_1: 211
+[2024-04-03 20:02:12,313 INFO] Weighted corpora loaded so far:
+			* corpus_1: 212
+[2024-04-03 20:02:15,555 INFO] Weighted corpora loaded so far:
+			* corpus_1: 213
+[2024-04-03 20:02:15,749 INFO] Weighted corpora loaded so far:
+			* corpus_1: 214
+[2024-04-03 20:02:15,940 INFO] Weighted corpora loaded so far:
+			* corpus_1: 215
+[2024-04-03 20:02:32,299 INFO] Step 2000/ 5000; acc: 93.2; ppl:   5.0; xent: 1.6; lr: 0.00395; sents:  102400; bsz: 1913/1527/256; 27671/22086 tok/s;    465 sec;
+[2024-04-03 20:02:32,539 INFO] valid stats calculation
+                           took: 0.24026918411254883 s.
+[2024-04-03 20:02:33,127 INFO] The translation of the valid dataset for dynamic scoring
+                               took : 0.5874524116516113 s.
+[2024-04-03 20:02:33,127 INFO] UPDATING VALIDATION BLEU
+[2024-04-03 20:02:33,270 INFO] validation BLEU: 14.79645759011449
+[2024-04-03 20:02:33,270 INFO] Train perplexity: 12.3947
+[2024-04-03 20:02:33,270 INFO] Train accuracy: 75.8167
+[2024-04-03 20:02:33,270 INFO] Sentences processed: 2.04752e+06
+[2024-04-03 20:02:33,270 INFO] Average bsz: 1898/1515/256
+[2024-04-03 20:02:33,270 INFO] Validation perplexity: 66.7585
+[2024-04-03 20:02:33,270 INFO] Validation accuracy: 47.9196
+[2024-04-03 20:02:33,271 INFO] Saving checkpoint models_scratch/modelv1_step_2000.pt
+[2024-04-03 20:02:41,604 INFO] Weighted corpora loaded so far:
+			* corpus_1: 216
+[2024-04-03 20:02:41,822 INFO] Weighted corpora loaded so far:
+			* corpus_1: 217
+[2024-04-03 20:02:44,453 INFO] Weighted corpora loaded so far:
+			* corpus_1: 218
+[2024-04-03 20:02:44,650 INFO] Weighted corpora loaded so far:
+			* corpus_1: 219
+[2024-04-03 20:02:44,847 INFO] Weighted corpora loaded so far:
+			* corpus_1: 220
+[2024-04-03 20:02:45,047 INFO] Weighted corpora loaded so far:
+			* corpus_1: 221
+[2024-04-03 20:02:45,246 INFO] Weighted corpora loaded so far:
+			* corpus_1: 222
+[2024-04-03 20:02:45,445 INFO] Weighted corpora loaded so far:
+			* corpus_1: 223
+[2024-04-03 20:02:48,427 INFO] Weighted corpora loaded so far:
+			* corpus_1: 224
+[2024-04-03 20:02:48,628 INFO] Weighted corpora loaded so far:
+			* corpus_1: 225
+[2024-04-03 20:02:48,824 INFO] Weighted corpora loaded so far:
+			* corpus_1: 226
+[2024-04-03 20:02:49,020 INFO] Weighted corpora loaded so far:
+			* corpus_1: 227
+[2024-04-03 20:02:49,210 INFO] Weighted corpora loaded so far:
+			* corpus_1: 228
+[2024-04-03 20:02:49,401 INFO] Weighted corpora loaded so far:
+			* corpus_1: 229
+[2024-04-03 20:02:49,592 INFO] Weighted corpora loaded so far:
+			* corpus_1: 230
+[2024-04-03 20:02:49,782 INFO] Weighted corpora loaded so far:
+			* corpus_1: 231
+[2024-04-03 20:03:02,927 INFO] Step 2100/ 5000; acc: 92.7; ppl:   5.1; xent: 1.6; lr: 0.00386; sents:  102363; bsz: 1863/1486/256; 24336/19402 tok/s;    496 sec;
+[2024-04-03 20:03:13,962 INFO] Step 2200/ 5000; acc: 93.6; ppl:   4.9; xent: 1.6; lr: 0.00377; sents:  102400; bsz: 1899/1522/256; 68852/55191 tok/s;    507 sec;
+[2024-04-03 20:03:16,515 INFO] Weighted corpora loaded so far:
+			* corpus_1: 232
+[2024-04-03 20:03:16,714 INFO] Weighted corpora loaded so far:
+			* corpus_1: 233
+[2024-04-03 20:03:16,911 INFO] Weighted corpora loaded so far:
+			* corpus_1: 234
+[2024-04-03 20:03:17,112 INFO] Weighted corpora loaded so far:
+			* corpus_1: 235
+[2024-04-03 20:03:19,982 INFO] Weighted corpora loaded so far:
+			* corpus_1: 236
+[2024-04-03 20:03:20,180 INFO] Weighted corpora loaded so far:
+			* corpus_1: 237
+[2024-04-03 20:03:20,381 INFO] Weighted corpora loaded so far:
+			* corpus_1: 238
+[2024-04-03 20:03:20,587 INFO] Weighted corpora loaded so far:
+			* corpus_1: 239
+[2024-04-03 20:03:20,784 INFO] Weighted corpora loaded so far:
+			* corpus_1: 240
+[2024-04-03 20:03:20,980 INFO] Weighted corpora loaded so far:
+			* corpus_1: 241
+[2024-04-03 20:03:21,178 INFO] Weighted corpora loaded so far:
+			* corpus_1: 242
+[2024-04-03 20:03:21,370 INFO] Weighted corpora loaded so far:
+			* corpus_1: 243
+[2024-04-03 20:03:24,585 INFO] Weighted corpora loaded so far:
+			* corpus_1: 244
+[2024-04-03 20:03:24,780 INFO] Weighted corpora loaded so far:
+			* corpus_1: 245
+[2024-04-03 20:03:24,974 INFO] Weighted corpora loaded so far:
+			* corpus_1: 246
+[2024-04-03 20:03:41,771 INFO] Step 2300/ 5000; acc: 93.0; ppl:   5.0; xent: 1.6; lr: 0.00369; sents:  102326; bsz: 1928/1532/256; 27732/22031 tok/s;    534 sec;
+[2024-04-03 20:03:49,403 INFO] Weighted corpora loaded so far:
+			* corpus_1: 247
+[2024-04-03 20:03:49,607 INFO] Weighted corpora loaded so far:
+			* corpus_1: 248
+[2024-04-03 20:03:52,276 INFO] Weighted corpora loaded so far:
+			* corpus_1: 249
+[2024-04-03 20:03:52,476 INFO] Weighted corpora loaded so far:
+			* corpus_1: 250
+[2024-04-03 20:03:52,675 INFO] Weighted corpora loaded so far:
+			* corpus_1: 251
+[2024-04-03 20:03:52,874 INFO] Weighted corpora loaded so far:
+			* corpus_1: 252
+[2024-04-03 20:03:53,076 INFO] Weighted corpora loaded so far:
+			* corpus_1: 253
+[2024-04-03 20:03:53,279 INFO] Weighted corpora loaded so far:
+			* corpus_1: 254
+[2024-04-03 20:03:53,486 INFO] Weighted corpora loaded so far:
+			* corpus_1: 255
+[2024-04-03 20:03:56,519 INFO] Weighted corpora loaded so far:
+			* corpus_1: 256
+[2024-04-03 20:03:56,716 INFO] Weighted corpora loaded so far:
+			* corpus_1: 257
+[2024-04-03 20:03:56,913 INFO] Weighted corpora loaded so far:
+			* corpus_1: 258
+[2024-04-03 20:03:57,110 INFO] Weighted corpora loaded so far:
+			* corpus_1: 259
+[2024-04-03 20:03:57,303 INFO] Weighted corpora loaded so far:
+			* corpus_1: 260
+[2024-04-03 20:03:57,499 INFO] Weighted corpora loaded so far:
+			* corpus_1: 261
+[2024-04-03 20:04:11,613 INFO] Step 2400/ 5000; acc: 93.6; ppl:   4.9; xent: 1.6; lr: 0.00361; sents:  102363; bsz: 1908/1518/256; 25576/20343 tok/s;    564 sec;
+[2024-04-03 20:04:22,628 INFO] Step 2500/ 5000; acc: 94.0; ppl:   4.8; xent: 1.6; lr: 0.00353; sents:  102400; bsz: 1861/1493/256; 67586/54208 tok/s;    575 sec;
+[2024-04-03 20:04:22,870 INFO] valid stats calculation
+                           took: 0.24125266075134277 s.
+[2024-04-03 20:04:23,315 INFO] The translation of the valid dataset for dynamic scoring
+                               took : 0.4455235004425049 s.
+[2024-04-03 20:04:23,315 INFO] UPDATING VALIDATION BLEU
+[2024-04-03 20:04:23,459 INFO] validation BLEU: 15.681746392710037
+[2024-04-03 20:04:23,459 INFO] Train perplexity: 10.3074
+[2024-04-03 20:04:23,459 INFO] Train accuracy: 79.3228
+[2024-04-03 20:04:23,459 INFO] Sentences processed: 2.55937e+06
+[2024-04-03 20:04:23,459 INFO] Average bsz: 1897/1514/256
+[2024-04-03 20:04:23,459 INFO] Validation perplexity: 65.943
+[2024-04-03 20:04:23,459 INFO] Validation accuracy: 48.4743
+[2024-04-03 20:04:25,367 INFO] Weighted corpora loaded so far:
+			* corpus_1: 262
+[2024-04-03 20:04:25,581 INFO] Weighted corpora loaded so far:
+			* corpus_1: 263
+[2024-04-03 20:04:25,780 INFO] Weighted corpora loaded so far:
+			* corpus_1: 264
+[2024-04-03 20:04:25,976 INFO] Weighted corpora loaded so far:
+			* corpus_1: 265
+[2024-04-03 20:04:26,186 INFO] Weighted corpora loaded so far:
+			* corpus_1: 266
+[2024-04-03 20:04:26,384 INFO] Weighted corpora loaded so far:
+			* corpus_1: 267
+[2024-04-03 20:04:29,397 INFO] Weighted corpora loaded so far:
+			* corpus_1: 268
+[2024-04-03 20:04:29,599 INFO] Weighted corpora loaded so far:
+			* corpus_1: 269
+[2024-04-03 20:04:29,802 INFO] Weighted corpora loaded so far:
+			* corpus_1: 270
+[2024-04-03 20:04:30,001 INFO] Weighted corpora loaded so far:
+			* corpus_1: 271
+[2024-04-03 20:04:30,203 INFO] Weighted corpora loaded so far:
+			* corpus_1: 272
+[2024-04-03 20:04:30,397 INFO] Weighted corpora loaded so far:
+			* corpus_1: 273
+[2024-04-03 20:04:30,587 INFO] Weighted corpora loaded so far:
+			* corpus_1: 274
+[2024-04-03 20:04:30,777 INFO] Weighted corpora loaded so far:
+			* corpus_1: 275
+[2024-04-03 20:04:34,170 INFO] Weighted corpora loaded so far:
+			* corpus_1: 276
+[2024-04-03 20:04:34,366 INFO] Weighted corpora loaded so far:
+			* corpus_1: 277
+[2024-04-03 20:04:51,415 INFO] Step 2600/ 5000; acc: 94.0; ppl:   4.8; xent: 1.6; lr: 0.00347; sents:  102363; bsz: 1924/1527/256; 26734/21213 tok/s;    604 sec;
+[2024-04-03 20:04:58,679 INFO] Weighted corpora loaded so far:
+			* corpus_1: 278
+[2024-04-03 20:04:58,881 INFO] Weighted corpora loaded so far:
+			* corpus_1: 279
+[2024-04-03 20:04:59,082 INFO] Weighted corpora loaded so far:
+			* corpus_1: 280
+[2024-04-03 20:04:59,285 INFO] Weighted corpora loaded so far:
+			* corpus_1: 281
+[2024-04-03 20:04:59,489 INFO] Weighted corpora loaded so far:
+			* corpus_1: 282
+[2024-04-03 20:05:02,404 INFO] Weighted corpora loaded so far:
+			* corpus_1: 283
+[2024-04-03 20:05:02,606 INFO] Weighted corpora loaded so far:
+			* corpus_1: 284
+[2024-04-03 20:05:02,808 INFO] Weighted corpora loaded so far:
+			* corpus_1: 285
+[2024-04-03 20:05:03,011 INFO] Weighted corpora loaded so far:
+			* corpus_1: 286
+[2024-04-03 20:05:03,213 INFO] Weighted corpora loaded so far:
+			* corpus_1: 287
+[2024-04-03 20:05:03,413 INFO] Weighted corpora loaded so far:
+			* corpus_1: 288
+[2024-04-03 20:05:03,602 INFO] Weighted corpora loaded so far:
+			* corpus_1: 289
+[2024-04-03 20:05:06,921 INFO] Weighted corpora loaded so far:
+			* corpus_1: 290
+[2024-04-03 20:05:07,108 INFO] Weighted corpora loaded so far:
+			* corpus_1: 291
+[2024-04-03 20:05:07,295 INFO] Weighted corpora loaded so far:
+			* corpus_1: 292
+[2024-04-03 20:05:19,072 INFO] Step 2700/ 5000; acc: 94.5; ppl:   4.7; xent: 1.5; lr: 0.00340; sents:  102400; bsz: 1881/1498/256; 27205/21669 tok/s;    632 sec;
+[2024-04-03 20:05:30,067 INFO] Step 2800/ 5000; acc: 94.8; ppl:   4.7; xent: 1.5; lr: 0.00334; sents:  102400; bsz: 1868/1502/256; 67947/54640 tok/s;    643 sec;
+[2024-04-03 20:05:31,696 INFO] Weighted corpora loaded so far:
+			* corpus_1: 293
+[2024-04-03 20:05:31,897 INFO] Weighted corpora loaded so far:
+			* corpus_1: 294
+[2024-04-03 20:05:32,099 INFO] Weighted corpora loaded so far:
+			* corpus_1: 295
+[2024-04-03 20:05:34,824 INFO] Weighted corpora loaded so far:
+			* corpus_1: 296
+[2024-04-03 20:05:35,023 INFO] Weighted corpora loaded so far:
+			* corpus_1: 297
+[2024-04-03 20:05:35,226 INFO] Weighted corpora loaded so far:
+			* corpus_1: 298
+[2024-04-03 20:05:35,427 INFO] Weighted corpora loaded so far:
+			* corpus_1: 299
+[2024-04-03 20:05:35,624 INFO] Weighted corpora loaded so far:
+			* corpus_1: 300
+[2024-04-03 20:05:35,823 INFO] Weighted corpora loaded so far:
+			* corpus_1: 301
+[2024-04-03 20:05:36,022 INFO] Weighted corpora loaded so far:
+			* corpus_1: 302
+[2024-04-03 20:05:39,122 INFO] Weighted corpora loaded so far:
+			* corpus_1: 303
+[2024-04-03 20:05:39,313 INFO] Weighted corpora loaded so far:
+			* corpus_1: 304
+[2024-04-03 20:05:39,504 INFO] Weighted corpora loaded so far:
+			* corpus_1: 305
+[2024-04-03 20:05:39,691 INFO] Weighted corpora loaded so far:
+			* corpus_1: 306
+[2024-04-03 20:05:39,877 INFO] Weighted corpora loaded so far:
+			* corpus_1: 307
+[2024-04-03 20:06:00,040 INFO] Step 2900/ 5000; acc: 94.3; ppl:   4.7; xent: 1.6; lr: 0.00328; sents:  102363; bsz: 1922/1524/256; 25655/20332 tok/s;    673 sec;
+[2024-04-03 20:06:06,807 INFO] Weighted corpora loaded so far:
+			* corpus_1: 308
+[2024-04-03 20:06:07,019 INFO] Weighted corpora loaded so far:
+			* corpus_1: 309
+[2024-04-03 20:06:07,218 INFO] Weighted corpora loaded so far:
+			* corpus_1: 310
+[2024-04-03 20:06:07,420 INFO] Weighted corpora loaded so far:
+			* corpus_1: 311
+[2024-04-03 20:06:07,619 INFO] Weighted corpora loaded so far:
+			* corpus_1: 312
+[2024-04-03 20:06:07,818 INFO] Weighted corpora loaded so far:
+			* corpus_1: 313
+[2024-04-03 20:06:08,022 INFO] Weighted corpora loaded so far:
+			* corpus_1: 314
+[2024-04-03 20:06:08,218 INFO] Weighted corpora loaded so far:
+			* corpus_1: 315
+[2024-04-03 20:06:08,415 INFO] Weighted corpora loaded so far:
+			* corpus_1: 316
+[2024-04-03 20:06:11,437 INFO] Weighted corpora loaded so far:
+			* corpus_1: 317
+[2024-04-03 20:06:11,636 INFO] Weighted corpora loaded so far:
+			* corpus_1: 318
+[2024-04-03 20:06:11,832 INFO] Weighted corpora loaded so far:
+			* corpus_1: 319
+[2024-04-03 20:06:12,023 INFO] Weighted corpora loaded so far:
+			* corpus_1: 320
+[2024-04-03 20:06:12,211 INFO] Weighted corpora loaded so far:
+			* corpus_1: 321
+[2024-04-03 20:06:12,399 INFO] Weighted corpora loaded so far:
+			* corpus_1: 322
+[2024-04-03 20:06:12,586 INFO] Weighted corpora loaded so far:
+			* corpus_1: 323
+[2024-04-03 20:06:27,234 INFO] Step 3000/ 5000; acc: 94.0; ppl:   4.8; xent: 1.6; lr: 0.00323; sents:  102363; bsz: 1878/1511/256; 27619/22219 tok/s;    700 sec;
+[2024-04-03 20:06:27,467 INFO] valid stats calculation
+                           took: 0.2328777313232422 s.
+[2024-04-03 20:06:27,898 INFO] The translation of the valid dataset for dynamic scoring
+                               took : 0.4303591251373291 s.
+[2024-04-03 20:06:27,898 INFO] UPDATING VALIDATION BLEU
+[2024-04-03 20:06:28,037 INFO] validation BLEU: 15.6448200154826
+[2024-04-03 20:06:28,037 INFO] Train perplexity: 9.05613
+[2024-04-03 20:06:28,037 INFO] Train accuracy: 81.8202
+[2024-04-03 20:06:28,037 INFO] Sentences processed: 3.07126e+06
+[2024-04-03 20:06:28,037 INFO] Average bsz: 1896/1513/256
+[2024-04-03 20:06:28,037 INFO] Validation perplexity: 69.7675
+[2024-04-03 20:06:28,037 INFO] Validation accuracy: 48.4975
+[2024-04-03 20:06:28,039 INFO] Saving checkpoint models_scratch/modelv1_step_3000.pt
+[2024-04-03 20:06:39,128 INFO] Step 3100/ 5000; acc: 94.6; ppl:   4.7; xent: 1.5; lr: 0.00317; sents:  102363; bsz: 1915/1527/256; 64403/51370 tok/s;    712 sec;
+[2024-04-03 20:06:40,269 INFO] Weighted corpora loaded so far:
+			* corpus_1: 324
+[2024-04-03 20:06:40,470 INFO] Weighted corpora loaded so far:
+			* corpus_1: 325
+[2024-04-03 20:06:40,670 INFO] Weighted corpora loaded so far:
+			* corpus_1: 326
+[2024-04-03 20:06:40,869 INFO] Weighted corpora loaded so far:
+			* corpus_1: 327
+[2024-04-03 20:06:43,653 INFO] Weighted corpora loaded so far:
+			* corpus_1: 328
+[2024-04-03 20:06:43,855 INFO] Weighted corpora loaded so far:
+			* corpus_1: 329
+[2024-04-03 20:06:44,054 INFO] Weighted corpora loaded so far:
+			* corpus_1: 330
+[2024-04-03 20:06:44,256 INFO] Weighted corpora loaded so far:
+			* corpus_1: 331
+[2024-04-03 20:06:44,456 INFO] Weighted corpora loaded so far:
+			* corpus_1: 332
+[2024-04-03 20:06:44,654 INFO] Weighted corpora loaded so far:
+			* corpus_1: 333
+[2024-04-03 20:06:44,852 INFO] Weighted corpora loaded so far:
+			* corpus_1: 334
+[2024-04-03 20:06:48,032 INFO] Weighted corpora loaded so far:
+			* corpus_1: 335
+[2024-04-03 20:06:48,222 INFO] Weighted corpora loaded so far:
+			* corpus_1: 336
+[2024-04-03 20:06:48,410 INFO] Weighted corpora loaded so far:
+			* corpus_1: 337
+[2024-04-03 20:06:48,598 INFO] Weighted corpora loaded so far:
+			* corpus_1: 338
+[2024-04-03 20:07:06,419 INFO] Step 3200/ 5000; acc: 95.2; ppl:   4.6; xent: 1.5; lr: 0.00312; sents:  102363; bsz: 1890/1505/256; 27709/22064 tok/s;    739 sec;
+[2024-04-03 20:07:12,754 INFO] Weighted corpora loaded so far:
+			* corpus_1: 339
+[2024-04-03 20:07:12,964 INFO] Weighted corpora loaded so far:
+			* corpus_1: 340
+[2024-04-03 20:07:15,569 INFO] Weighted corpora loaded so far:
+			* corpus_1: 341
+[2024-04-03 20:07:15,766 INFO] Weighted corpora loaded so far:
+			* corpus_1: 342
+[2024-04-03 20:07:15,965 INFO] Weighted corpora loaded so far:
+			* corpus_1: 343
+[2024-04-03 20:07:16,161 INFO] Weighted corpora loaded so far:
+			* corpus_1: 344
+[2024-04-03 20:07:16,358 INFO] Weighted corpora loaded so far:
+			* corpus_1: 345
+[2024-04-03 20:07:16,564 INFO] Weighted corpora loaded so far:
+			* corpus_1: 346
+[2024-04-03 20:07:19,571 INFO] Weighted corpora loaded so far:
+			* corpus_1: 347
+[2024-04-03 20:07:19,768 INFO] Weighted corpora loaded so far:
+			* corpus_1: 348
+[2024-04-03 20:07:19,964 INFO] Weighted corpora loaded so far:
+			* corpus_1: 349
+[2024-04-03 20:07:20,155 INFO] Weighted corpora loaded so far:
+			* corpus_1: 350
+[2024-04-03 20:07:20,345 INFO] Weighted corpora loaded so far:
+			* corpus_1: 351
+[2024-04-03 20:07:20,533 INFO] Weighted corpora loaded so far:
+			* corpus_1: 352
+[2024-04-03 20:07:20,728 INFO] Weighted corpora loaded so far:
+			* corpus_1: 353
+[2024-04-03 20:07:35,747 INFO] Step 3300/ 5000; acc: 95.2; ppl:   4.6; xent: 1.5; lr: 0.00308; sents:  102400; bsz: 1879/1511/256; 25626/20605 tok/s;    768 sec;
+[2024-04-03 20:07:46,670 INFO] Step 3400/ 5000; acc: 94.4; ppl:   4.7; xent: 1.5; lr: 0.00303; sents:  102363; bsz: 1920/1521/256; 70318/55689 tok/s;    779 sec;
+[2024-04-03 20:07:47,216 INFO] Weighted corpora loaded so far:
+			* corpus_1: 354
+[2024-04-03 20:07:47,430 INFO] Weighted corpora loaded so far:
+			* corpus_1: 355
+[2024-04-03 20:07:47,629 INFO] Weighted corpora loaded so far:
+			* corpus_1: 356
+[2024-04-03 20:07:47,828 INFO] Weighted corpora loaded so far:
+			* corpus_1: 357
+[2024-04-03 20:07:48,026 INFO] Weighted corpora loaded so far:
+			* corpus_1: 358
+[2024-04-03 20:07:48,228 INFO] Weighted corpora loaded so far:
+			* corpus_1: 359
+[2024-04-03 20:07:51,076 INFO] Weighted corpora loaded so far:
+			* corpus_1: 360
+[2024-04-03 20:07:51,273 INFO] Weighted corpora loaded so far:
+			* corpus_1: 361
+[2024-04-03 20:07:51,470 INFO] Weighted corpora loaded so far:
+			* corpus_1: 362
+[2024-04-03 20:07:51,669 INFO] Weighted corpora loaded so far:
+			* corpus_1: 363
+[2024-04-03 20:07:51,867 INFO] Weighted corpora loaded so far:
+			* corpus_1: 364
+[2024-04-03 20:07:52,060 INFO] Weighted corpora loaded so far:
+			* corpus_1: 365
+[2024-04-03 20:07:52,247 INFO] Weighted corpora loaded so far:
+			* corpus_1: 366
+[2024-04-03 20:07:52,437 INFO] Weighted corpora loaded so far:
+			* corpus_1: 367
+[2024-04-03 20:07:55,697 INFO] Weighted corpora loaded so far:
+			* corpus_1: 368
+[2024-04-03 20:07:55,882 INFO] Weighted corpora loaded so far:
+			* corpus_1: 369
+[2024-04-03 20:08:14,182 INFO] Step 3500/ 5000; acc: 95.0; ppl:   4.6; xent: 1.5; lr: 0.00299; sents:  102363; bsz: 1932/1532/256; 28086/22278 tok/s;    807 sec;
+[2024-04-03 20:08:14,415 INFO] valid stats calculation
+                           took: 0.23311161994934082 s.
+[2024-04-03 20:08:14,990 INFO] The translation of the valid dataset for dynamic scoring
+                               took : 0.5746183395385742 s.
+[2024-04-03 20:08:14,990 INFO] UPDATING VALIDATION BLEU
+[2024-04-03 20:08:15,138 INFO] validation BLEU: 13.204174708469465
+[2024-04-03 20:08:15,139 INFO] Train perplexity: 8.22508
+[2024-04-03 20:08:15,139 INFO] Train accuracy: 83.6912
+[2024-04-03 20:08:15,139 INFO] Sentences processed: 3.58311e+06
+[2024-04-03 20:08:15,139 INFO] Average bsz: 1898/1514/256
+[2024-04-03 20:08:15,139 INFO] Validation perplexity: 71.3726
+[2024-04-03 20:08:15,139 INFO] Validation accuracy: 48.2432
+[2024-04-03 20:08:21,161 INFO] Weighted corpora loaded so far:
+			* corpus_1: 370
+[2024-04-03 20:08:21,358 INFO] Weighted corpora loaded so far:
+			* corpus_1: 371
+[2024-04-03 20:08:21,557 INFO] Weighted corpora loaded so far:
+			* corpus_1: 372
+[2024-04-03 20:08:24,236 INFO] Weighted corpora loaded so far:
+			* corpus_1: 373
+[2024-04-03 20:08:24,435 INFO] Weighted corpora loaded so far:
+			* corpus_1: 374
+[2024-04-03 20:08:24,632 INFO] Weighted corpora loaded so far:
+			* corpus_1: 375
+[2024-04-03 20:08:24,830 INFO] Weighted corpora loaded so far:
+			* corpus_1: 376
+[2024-04-03 20:08:25,030 INFO] Weighted corpora loaded so far:
+			* corpus_1: 377
+[2024-04-03 20:08:25,228 INFO] Weighted corpora loaded so far:
+			* corpus_1: 378
+[2024-04-03 20:08:25,426 INFO] Weighted corpora loaded so far:
+			* corpus_1: 379
+[2024-04-03 20:08:28,434 INFO] Weighted corpora loaded so far:
+			* corpus_1: 380
+[2024-04-03 20:08:28,626 INFO] Weighted corpora loaded so far:
+			* corpus_1: 381
+[2024-04-03 20:08:28,819 INFO] Weighted corpora loaded so far:
+			* corpus_1: 382
+[2024-04-03 20:08:29,009 INFO] Weighted corpora loaded so far:
+			* corpus_1: 383
+[2024-04-03 20:08:29,201 INFO] Weighted corpora loaded so far:
+			* corpus_1: 384
+[2024-04-03 20:08:44,722 INFO] Step 3600/ 5000; acc: 95.2; ppl:   4.6; xent: 1.5; lr: 0.00295; sents:  102400; bsz: 1865/1489/256; 24433/19503 tok/s;    837 sec;
+[2024-04-03 20:08:55,666 INFO] Step 3700/ 5000; acc: 95.3; ppl:   4.6; xent: 1.5; lr: 0.00291; sents:  102363; bsz: 1887/1519/256; 68971/55524 tok/s;    848 sec;
+[2024-04-03 20:08:55,886 INFO] Weighted corpora loaded so far:
+			* corpus_1: 385
+[2024-04-03 20:08:56,090 INFO] Weighted corpora loaded so far:
+			* corpus_1: 386
+[2024-04-03 20:08:56,290 INFO] Weighted corpora loaded so far:
+			* corpus_1: 387
+[2024-04-03 20:08:56,487 INFO] Weighted corpora loaded so far:
+			* corpus_1: 388
+[2024-04-03 20:08:56,685 INFO] Weighted corpora loaded so far:
+			* corpus_1: 389
+[2024-04-03 20:08:56,881 INFO] Weighted corpora loaded so far:
+			* corpus_1: 390
+[2024-04-03 20:08:57,077 INFO] Weighted corpora loaded so far:
+			* corpus_1: 391
+[2024-04-03 20:08:57,275 INFO] Weighted corpora loaded so far:
+			* corpus_1: 392
+[2024-04-03 20:08:57,476 INFO] Weighted corpora loaded so far:
+			* corpus_1: 393
+[2024-04-03 20:09:00,517 INFO] Weighted corpora loaded so far:
+			* corpus_1: 394
+[2024-04-03 20:09:00,718 INFO] Weighted corpora loaded so far:
+			* corpus_1: 395
+[2024-04-03 20:09:00,912 INFO] Weighted corpora loaded so far:
+			* corpus_1: 396
+[2024-04-03 20:09:01,105 INFO] Weighted corpora loaded so far:
+			* corpus_1: 397
+[2024-04-03 20:09:01,294 INFO] Weighted corpora loaded so far:
+			* corpus_1: 398
+[2024-04-03 20:09:01,484 INFO] Weighted corpora loaded so far:
+			* corpus_1: 399
+[2024-04-03 20:09:22,777 INFO] Step 3800/ 5000; acc: 95.5; ppl:   4.5; xent: 1.5; lr: 0.00287; sents:  102363; bsz: 1895/1519/256; 27955/22408 tok/s;    875 sec;
+[2024-04-03 20:09:28,107 INFO] Weighted corpora loaded so far:
+			* corpus_1: 400
+[2024-04-03 20:09:28,315 INFO] Weighted corpora loaded so far:
+			* corpus_1: 401
+[2024-04-03 20:09:28,516 INFO] Weighted corpora loaded so far:
+			* corpus_1: 402
+[2024-04-03 20:09:28,715 INFO] Weighted corpora loaded so far:
+			* corpus_1: 403
+[2024-04-03 20:09:28,912 INFO] Weighted corpora loaded so far:
+			* corpus_1: 404
+[2024-04-03 20:09:29,110 INFO] Weighted corpora loaded so far:
+			* corpus_1: 405
+[2024-04-03 20:09:29,310 INFO] Weighted corpora loaded so far:
+			* corpus_1: 406
+[2024-04-03 20:09:29,513 INFO] Weighted corpora loaded so far:
+			* corpus_1: 407
+[2024-04-03 20:09:32,364 INFO] Weighted corpora loaded so far:
+			* corpus_1: 408
+[2024-04-03 20:09:32,563 INFO] Weighted corpora loaded so far:
+			* corpus_1: 409
+[2024-04-03 20:09:32,762 INFO] Weighted corpora loaded so far:
+			* corpus_1: 410
+[2024-04-03 20:09:32,957 INFO] Weighted corpora loaded so far:
+			* corpus_1: 411
+[2024-04-03 20:09:33,150 INFO] Weighted corpora loaded so far:
+			* corpus_1: 412
+[2024-04-03 20:09:33,343 INFO] Weighted corpora loaded so far:
+			* corpus_1: 413
+[2024-04-03 20:09:33,535 INFO] Weighted corpora loaded so far:
+			* corpus_1: 414
+[2024-04-03 20:09:33,726 INFO] Weighted corpora loaded so far:
+			* corpus_1: 415
+[2024-04-03 20:09:49,893 INFO] Step 3900/ 5000; acc: 94.9; ppl:   4.6; xent: 1.5; lr: 0.00283; sents:  102400; bsz: 1902/1506/256; 28051/22223 tok/s;    902 sec;
+[2024-04-03 20:10:00,753 INFO] Weighted corpora loaded so far:
+			* corpus_1: 416
+[2024-04-03 20:10:00,953 INFO] Weighted corpora loaded so far:
+			* corpus_1: 417
+[2024-04-03 20:10:01,154 INFO] Weighted corpora loaded so far:
+			* corpus_1: 418
+[2024-04-03 20:10:01,353 INFO] Weighted corpora loaded so far:
+			* corpus_1: 419
+[2024-04-03 20:10:01,550 INFO] Weighted corpora loaded so far:
+			* corpus_1: 420
+[2024-04-03 20:10:01,745 INFO] Weighted corpora loaded so far:
+			* corpus_1: 421
+[2024-04-03 20:10:04,616 INFO] Weighted corpora loaded so far:
+			* corpus_1: 422
+[2024-04-03 20:10:04,819 INFO] Weighted corpora loaded so far:
+			* corpus_1: 423
+[2024-04-03 20:10:05,020 INFO] Weighted corpora loaded so far:
+			* corpus_1: 424
+[2024-04-03 20:10:05,219 INFO] Weighted corpora loaded so far:
+			* corpus_1: 425
+[2024-04-03 20:10:05,416 INFO] Weighted corpora loaded so far:
+			* corpus_1: 426
+[2024-04-03 20:10:05,604 INFO] Weighted corpora loaded so far:
+			* corpus_1: 427
+[2024-04-03 20:10:05,794 INFO] Weighted corpora loaded so far:
+			* corpus_1: 428
+[2024-04-03 20:10:05,978 INFO] Weighted corpora loaded so far:
+			* corpus_1: 429
+[2024-04-03 20:10:09,117 INFO] Weighted corpora loaded so far:
+			* corpus_1: 430
+[2024-04-03 20:10:17,244 INFO] Step 4000/ 5000; acc: 95.7; ppl:   4.5; xent: 1.5; lr: 0.00279; sents:  102363; bsz: 1897/1518/256; 27749/22203 tok/s;    930 sec;
+[2024-04-03 20:10:17,474 INFO] valid stats calculation
+                           took: 0.22969841957092285 s.
+[2024-04-03 20:10:18,038 INFO] The translation of the valid dataset for dynamic scoring
+                               took : 0.5637869834899902 s.
+[2024-04-03 20:10:18,038 INFO] UPDATING VALIDATION BLEU
+[2024-04-03 20:10:18,184 INFO] validation BLEU: 13.967074357528185
+[2024-04-03 20:10:18,185 INFO] Train perplexity: 7.63736
+[2024-04-03 20:10:18,185 INFO] Train accuracy: 85.1406
+[2024-04-03 20:10:18,185 INFO] Sentences processed: 4.095e+06
+[2024-04-03 20:10:18,185 INFO] Average bsz: 1897/1514/256
+[2024-04-03 20:10:18,185 INFO] Validation perplexity: 71.7297
+[2024-04-03 20:10:18,185 INFO] Validation accuracy: 48.5264
+[2024-04-03 20:10:18,186 INFO] Saving checkpoint models_scratch/modelv1_step_4000.pt
+[2024-04-03 20:10:29,189 INFO] Step 4100/ 5000; acc: 94.9; ppl:   4.6; xent: 1.5; lr: 0.00276; sents:  102363; bsz: 1925/1516/256; 64468/50754 tok/s;    942 sec;
+[2024-04-03 20:10:34,113 INFO] Weighted corpora loaded so far:
+			* corpus_1: 431
+[2024-04-03 20:10:34,309 INFO] Weighted corpora loaded so far:
+			* corpus_1: 432
+[2024-04-03 20:10:34,508 INFO] Weighted corpora loaded so far:
+			* corpus_1: 433
+[2024-04-03 20:10:34,709 INFO] Weighted corpora loaded so far:
+			* corpus_1: 434
+[2024-04-03 20:10:34,909 INFO] Weighted corpora loaded so far:
+			* corpus_1: 435
+[2024-04-03 20:10:37,537 INFO] Weighted corpora loaded so far:
+			* corpus_1: 436
+[2024-04-03 20:10:37,737 INFO] Weighted corpora loaded so far:
+			* corpus_1: 437
+[2024-04-03 20:10:37,934 INFO] Weighted corpora loaded so far:
+			* corpus_1: 438
+[2024-04-03 20:10:38,132 INFO] Weighted corpora loaded so far:
+			* corpus_1: 439
+[2024-04-03 20:10:38,331 INFO] Weighted corpora loaded so far:
+			* corpus_1: 440
+[2024-04-03 20:10:38,527 INFO] Weighted corpora loaded so far:
+			* corpus_1: 441
+[2024-04-03 20:10:38,720 INFO] Weighted corpora loaded so far:
+			* corpus_1: 442
+[2024-04-03 20:10:38,913 INFO] Weighted corpora loaded so far:
+			* corpus_1: 443
+[2024-04-03 20:10:41,913 INFO] Weighted corpora loaded so far:
+			* corpus_1: 444
+[2024-04-03 20:10:42,102 INFO] Weighted corpora loaded so far:
+			* corpus_1: 445
+[2024-04-03 20:10:55,775 INFO] Step 4200/ 5000; acc: 96.3; ppl:   4.4; xent: 1.5; lr: 0.00273; sents:  102363; bsz: 1871/1525/256; 28144/22945 tok/s;    968 sec;
+[2024-04-03 20:11:05,895 INFO] Weighted corpora loaded so far:
+			* corpus_1: 446
+[2024-04-03 20:11:06,108 INFO] Weighted corpora loaded so far:
+			* corpus_1: 447
+[2024-04-03 20:11:06,313 INFO] Weighted corpora loaded so far:
+			* corpus_1: 448
+[2024-04-03 20:11:06,512 INFO] Weighted corpora loaded so far:
+			* corpus_1: 449
+[2024-04-03 20:11:09,151 INFO] Weighted corpora loaded so far:
+			* corpus_1: 450
+[2024-04-03 20:11:09,351 INFO] Weighted corpora loaded so far:
+			* corpus_1: 451
+[2024-04-03 20:11:09,547 INFO] Weighted corpora loaded so far:
+			* corpus_1: 452
+[2024-04-03 20:11:09,743 INFO] Weighted corpora loaded so far:
+			* corpus_1: 453
+[2024-04-03 20:11:09,942 INFO] Weighted corpora loaded so far:
+			* corpus_1: 454
+[2024-04-03 20:11:10,137 INFO] Weighted corpora loaded so far:
+			* corpus_1: 455
+[2024-04-03 20:11:10,332 INFO] Weighted corpora loaded so far:
+			* corpus_1: 456
+[2024-04-03 20:11:13,286 INFO] Weighted corpora loaded so far:
+			* corpus_1: 457
+[2024-04-03 20:11:13,476 INFO] Weighted corpora loaded so far:
+			* corpus_1: 458
+[2024-04-03 20:11:13,663 INFO] Weighted corpora loaded so far:
+			* corpus_1: 459
+[2024-04-03 20:11:13,849 INFO] Weighted corpora loaded so far:
+			* corpus_1: 460
+[2024-04-03 20:11:14,033 INFO] Weighted corpora loaded so far:
+			* corpus_1: 461
+[2024-04-03 20:11:22,138 INFO] Step 4300/ 5000; acc: 95.7; ppl:   4.5; xent: 1.5; lr: 0.00270; sents:  102400; bsz: 1886/1490/256; 28613/22612 tok/s;    995 sec;
+[2024-04-03 20:11:32,968 INFO] Step 4400/ 5000; acc: 95.4; ppl:   4.5; xent: 1.5; lr: 0.00266; sents:  102363; bsz: 1929/1523/256; 71250/56239 tok/s;   1006 sec;
+[2024-04-03 20:11:39,590 INFO] Weighted corpora loaded so far:
+			* corpus_1: 462
+[2024-04-03 20:11:39,787 INFO] Weighted corpora loaded so far:
+			* corpus_1: 463
+[2024-04-03 20:11:39,986 INFO] Weighted corpora loaded so far:
+			* corpus_1: 464
+[2024-04-03 20:11:40,179 INFO] Weighted corpora loaded so far:
+			* corpus_1: 465
+[2024-04-03 20:11:40,388 INFO] Weighted corpora loaded so far:
+			* corpus_1: 466
+[2024-04-03 20:11:40,600 INFO] Weighted corpora loaded so far:
+			* corpus_1: 467
+[2024-04-03 20:11:43,223 INFO] Weighted corpora loaded so far:
+			* corpus_1: 468
+[2024-04-03 20:11:43,422 INFO] Weighted corpora loaded so far:
+			* corpus_1: 469
+[2024-04-03 20:11:43,622 INFO] Weighted corpora loaded so far:
+			* corpus_1: 470
+[2024-04-03 20:11:43,819 INFO] Weighted corpora loaded so far:
+			* corpus_1: 471
+[2024-04-03 20:11:44,014 INFO] Weighted corpora loaded so far:
+			* corpus_1: 472
+[2024-04-03 20:11:44,208 INFO] Weighted corpora loaded so far:
+			* corpus_1: 473
+[2024-04-03 20:11:44,414 INFO] Weighted corpora loaded so far:
+			* corpus_1: 474
+[2024-04-03 20:11:44,616 INFO] Weighted corpora loaded so far:
+			* corpus_1: 475
+[2024-04-03 20:11:47,693 INFO] Weighted corpora loaded so far:
+			* corpus_1: 476
+[2024-04-03 20:12:01,835 INFO] Step 4500/ 5000; acc: 96.0; ppl:   4.4; xent: 1.5; lr: 0.00263; sents:  102400; bsz: 1877/1509/256; 26015/20904 tok/s;   1034 sec;
+[2024-04-03 20:12:02,064 INFO] valid stats calculation
+                           took: 0.22867727279663086 s.
+[2024-04-03 20:12:02,498 INFO] The translation of the valid dataset for dynamic scoring
+                               took : 0.43337130546569824 s.
+[2024-04-03 20:12:02,498 INFO] UPDATING VALIDATION BLEU
+[2024-04-03 20:12:02,637 INFO] validation BLEU: 15.726248079150054
+[2024-04-03 20:12:02,638 INFO] Train perplexity: 7.19695
+[2024-04-03 20:12:02,638 INFO] Train accuracy: 86.308
+[2024-04-03 20:12:02,638 INFO] Sentences processed: 4.60689e+06
+[2024-04-03 20:12:02,638 INFO] Average bsz: 1897/1514/256
+[2024-04-03 20:12:02,638 INFO] Validation perplexity: 70.858
+[2024-04-03 20:12:02,638 INFO] Validation accuracy: 48.9887
+[2024-04-03 20:12:12,446 INFO] Weighted corpora loaded so far:
+			* corpus_1: 477
+[2024-04-03 20:12:12,644 INFO] Weighted corpora loaded so far:
+			* corpus_1: 478
+[2024-04-03 20:12:12,853 INFO] Weighted corpora loaded so far:
+			* corpus_1: 479
+[2024-04-03 20:12:13,060 INFO] Weighted corpora loaded so far:
+			* corpus_1: 480
+[2024-04-03 20:12:13,261 INFO] Weighted corpora loaded so far:
+			* corpus_1: 481
+[2024-04-03 20:12:15,918 INFO] Weighted corpora loaded so far:
+			* corpus_1: 482
+[2024-04-03 20:12:16,116 INFO] Weighted corpora loaded so far:
+			* corpus_1: 483
+[2024-04-03 20:12:16,313 INFO] Weighted corpora loaded so far:
+			* corpus_1: 484
+[2024-04-03 20:12:16,509 INFO] Weighted corpora loaded so far:
+			* corpus_1: 485
+[2024-04-03 20:12:16,710 INFO] Weighted corpora loaded so far:
+			* corpus_1: 486
+[2024-04-03 20:12:16,907 INFO] Weighted corpora loaded so far:
+			* corpus_1: 487
+[2024-04-03 20:12:17,109 INFO] Weighted corpora loaded so far:
+			* corpus_1: 488
+[2024-04-03 20:12:17,321 INFO] Weighted corpora loaded so far:
+			* corpus_1: 489
+[2024-04-03 20:12:20,340 INFO] Weighted corpora loaded so far:
+			* corpus_1: 490
+[2024-04-03 20:12:20,529 INFO] Weighted corpora loaded so far:
+			* corpus_1: 491
+[2024-04-03 20:12:29,290 INFO] Step 4600/ 5000; acc: 95.9; ppl:   4.4; xent: 1.5; lr: 0.00261; sents:  102363; bsz: 1880/1514/256; 27389/22061 tok/s;   1062 sec;
+[2024-04-03 20:12:40,091 INFO] Step 4700/ 5000; acc: 95.3; ppl:   4.5; xent: 1.5; lr: 0.00258; sents:  102363; bsz: 1921/1527/256; 71132/56538 tok/s;   1073 sec;
+[2024-04-03 20:12:44,071 INFO] Weighted corpora loaded so far:
+			* corpus_1: 492
+[2024-04-03 20:12:44,279 INFO] Weighted corpora loaded so far:
+			* corpus_1: 493
+[2024-04-03 20:12:44,476 INFO] Weighted corpora loaded so far:
+			* corpus_1: 494
+[2024-04-03 20:12:44,676 INFO] Weighted corpora loaded so far:
+			* corpus_1: 495
+[2024-04-03 20:12:47,140 INFO] Weighted corpora loaded so far:
+			* corpus_1: 496
+[2024-04-03 20:12:47,341 INFO] Weighted corpora loaded so far:
+			* corpus_1: 497
+[2024-04-03 20:12:47,540 INFO] Weighted corpora loaded so far:
+			* corpus_1: 498
+[2024-04-03 20:12:47,738 INFO] Weighted corpora loaded so far:
+			* corpus_1: 499
+[2024-04-03 20:12:47,932 INFO] Weighted corpora loaded so far:
+			* corpus_1: 500
+[2024-04-03 20:12:48,126 INFO] Weighted corpora loaded so far:
+			* corpus_1: 501
+[2024-04-03 20:12:48,324 INFO] Weighted corpora loaded so far:
+			* corpus_1: 502
+[2024-04-03 20:12:51,243 INFO] Weighted corpora loaded so far:
+			* corpus_1: 503
+[2024-04-03 20:12:51,434 INFO] Weighted corpora loaded so far:
+			* corpus_1: 504
+[2024-04-03 20:12:51,621 INFO] Weighted corpora loaded so far:
+			* corpus_1: 505
+[2024-04-03 20:12:51,809 INFO] Weighted corpora loaded so far:
+			* corpus_1: 506
+[2024-04-03 20:12:51,998 INFO] Weighted corpora loaded so far:
+			* corpus_1: 507
+[2024-04-03 20:13:06,260 INFO] Step 4800/ 5000; acc: 96.7; ppl:   4.3; xent: 1.5; lr: 0.00255; sents:  102400; bsz: 1868/1510/256; 28550/23085 tok/s;   1099 sec;
+[2024-04-03 20:13:17,739 INFO] Weighted corpora loaded so far:
+			* corpus_1: 508
+[2024-04-03 20:13:17,957 INFO] Weighted corpora loaded so far:
+			* corpus_1: 509
+[2024-04-03 20:13:18,169 INFO] Weighted corpora loaded so far:
+			* corpus_1: 510
+[2024-04-03 20:13:18,367 INFO] Weighted corpora loaded so far:
+			* corpus_1: 511
+[2024-04-03 20:13:18,579 INFO] Weighted corpora loaded so far:
+			* corpus_1: 512
+[2024-04-03 20:13:18,775 INFO] Weighted corpora loaded so far:
+			* corpus_1: 513
+[2024-04-03 20:13:21,439 INFO] Weighted corpora loaded so far:
+			* corpus_1: 514
+[2024-04-03 20:13:21,633 INFO] Weighted corpora loaded so far:
+			* corpus_1: 515
+[2024-04-03 20:13:21,828 INFO] Weighted corpora loaded so far:
+			* corpus_1: 516
+[2024-04-03 20:13:22,023 INFO] Weighted corpora loaded so far:
+			* corpus_1: 517
+[2024-04-03 20:13:22,220 INFO] Weighted corpora loaded so far:
+			* corpus_1: 518
+[2024-04-03 20:13:22,423 INFO] Weighted corpora loaded so far:
+			* corpus_1: 519
+[2024-04-03 20:13:22,614 INFO] Weighted corpora loaded so far:
+			* corpus_1: 520
+[2024-04-03 20:13:22,802 INFO] Weighted corpora loaded so far:
+			* corpus_1: 521
+[2024-04-03 20:13:25,915 INFO] Weighted corpora loaded so far:
+			* corpus_1: 522
+[2024-04-03 20:13:35,162 INFO] Step 4900/ 5000; acc: 96.0; ppl:   4.4; xent: 1.5; lr: 0.00253; sents:  102363; bsz: 1906/1505/256; 26372/20830 tok/s;   1128 sec;
+[2024-04-03 20:13:45,998 INFO] Step 5000/ 5000; acc: 96.0; ppl:   4.4; xent: 1.5; lr: 0.00250; sents:  102400; bsz: 1918/1527/256; 70800/56376 tok/s;   1139 sec;
+[2024-04-03 20:13:46,240 INFO] valid stats calculation
+                           took: 0.2418217658996582 s.
+[2024-04-03 20:13:46,819 INFO] The translation of the valid dataset for dynamic scoring
+                               took : 0.5790591239929199 s.
+[2024-04-03 20:13:46,819 INFO] UPDATING VALIDATION BLEU
+[2024-04-03 20:13:46,965 INFO] validation BLEU: 15.339872525814064
+[2024-04-03 20:13:46,965 INFO] Train perplexity: 6.85229
+[2024-04-03 20:13:46,966 INFO] Train accuracy: 87.2749
+[2024-04-03 20:13:46,966 INFO] Sentences processed: 5.11878e+06
+[2024-04-03 20:13:46,966 INFO] Average bsz: 1897/1514/256
+[2024-04-03 20:13:46,966 INFO] Validation perplexity: 71.2943
+[2024-04-03 20:13:46,966 INFO] Validation accuracy: 48.6997
+[2024-04-03 20:13:46,967 INFO] Saving checkpoint models_scratch/modelv1_step_5000.pt
