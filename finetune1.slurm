@@ -16,13 +16,14 @@ export BS=8
 export GAS=1
 export m=Helsinki-NLP/opus-mt-es-en
 export MAX_LEN=128
+export MAX_TGT_LEN=128 
 export OUT_DIR=models_finetune_small_opus-mt-es-en
-export TOK_EN_DIR=hf_tok_en
+export TOK_EN_DIR=${PWD}/hf_tok_en
 
 python transformers/examples/legacy/seq2seq/finetune_trainer.py \
     --tokenizer_name $m --model_name_or_path $m \
     --data_dir $TOK_EN_DIR \
-    --output_dir OUT_DIR --overwrite_output_dir \
+    --output_dir $OUT_DIR --overwrite_output_dir \
     --learning_rate=2e-5 \
     --warmup_steps 500 --sortish_sampler \
     --fp16 \
@@ -30,12 +31,11 @@ python transformers/examples/legacy/seq2seq/finetune_trainer.py \
     --per_device_train_batch_size=$BS --per_device_eval_batch_size=$BS \
     --freeze_encoder --freeze_embeds \
     --num_train_epochs=10 \
-    --save_strategy epoch --eval_strategy epoch \
+    --save_strategy epoch --evaluation_strategy epoch \
     --save_steps 1 --eval_steps 1 \
     --max_source_length $MAX_LEN --max_target_length $MAX_LEN \
     --val_max_target_length $MAX_TGT_LEN --test_max_target_length $MAX_TGT_LEN \
     --do_train --do_eval --do_predict \
-    --evaluation_strategy steps \
     --predict_with_generate --logging_first_step \
     --task translation --label_smoothing_factor 0.1 \
     "$@"
