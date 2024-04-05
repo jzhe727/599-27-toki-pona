@@ -12,25 +12,25 @@ source ~/software/miniconda3/bin/activate
 cd ~/599-27-toki-pona
 conda activate nlpa4
 
-export BS=8
+export BS=64
 export GAS=1
 export m=Helsinki-NLP/opus-mt-es-en
 export MAX_LEN=128
 export MAX_TGT_LEN=128 
-export OUT_DIR=models_finetune_small_opus-mt-es-en
+export OUT_DIR=models_es-en
 export TOK_EN_DIR=${PWD}/hf_tok_en
 
 python transformers/examples/legacy/seq2seq/finetune_trainer.py \
     --tokenizer_name $m --model_name_or_path $m \
     --data_dir $TOK_EN_DIR \
     --output_dir $OUT_DIR --overwrite_output_dir \
-    --learning_rate=2e-5 \
+    --learning_rate=3e-4 \
     --warmup_steps 500 --sortish_sampler \
     --fp16 \
     --gradient_accumulation_steps=$GAS \
     --per_device_train_batch_size=$BS --per_device_eval_batch_size=$BS \
     --freeze_encoder --freeze_embeds \
-    --num_train_epochs=10 \
+    --num_train_epochs=20 \
     --save_strategy epoch --evaluation_strategy epoch \
     --save_steps 1 --eval_steps 1 \
     --max_source_length $MAX_LEN --max_target_length $MAX_LEN \
