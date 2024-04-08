@@ -5,7 +5,7 @@ langs = ['eo', 'tpi', 'fr', 'de', 'ja', 'ru', 'ar', 'es', 'zh']
 
 folder = "models_{lang}-en"
 
-langs = ['ru', 'ar', 'es', 'zh']
+langs = ['eo', 'tpi', 'fr', 'de', 'ja', 'ru', 'ar', 'es', 'zh']
 bar_data = []
 for lang in langs:
     with open(folder.format(lang=lang) + "/val_results.json") as f:

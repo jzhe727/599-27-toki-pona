@@ -14,10 +14,10 @@ conda activate nlpa4
 
 export BS=64
 export GAS=1
-export m=Helsinki-NLP/opus-mt-es-en
+export m=Helsinki-NLP/opus-mt-zh-en
 export MAX_LEN=128
 export MAX_TGT_LEN=128 
-export OUT_DIR=models_es-en
+export OUT_DIR=models_zh-en
 export TOK_EN_DIR=${PWD}/hf_tok_en
 
 python transformers/examples/legacy/seq2seq/finetune_trainer.py \
@@ -30,7 +30,7 @@ python transformers/examples/legacy/seq2seq/finetune_trainer.py \
     --gradient_accumulation_steps=$GAS \
     --per_device_train_batch_size=$BS --per_device_eval_batch_size=$BS \
     --freeze_encoder --freeze_embeds \
-    --num_train_epochs=20 \
+    --num_train_epochs=40 \
     --save_strategy epoch --evaluation_strategy epoch \
     --save_steps 1 --eval_steps 1 \
     --max_source_length $MAX_LEN --max_target_length $MAX_LEN \
