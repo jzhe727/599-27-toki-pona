@@ -12,11 +12,11 @@ for lang in langs:
         results = json.load(f)
     bar_data.append(results["val_bleu"])
 
-fig, ax = plt.subplots(figsize=(6, 4))
+fig, ax = plt.subplots(figsize=(10, 6))
 
 p = ax.bar(langs, bar_data, label=langs)
 
-ax.bar_label(p, label_type='edge')
+ax.bar_label(p, label_type='edge', fmt='{:.2f}')
 
 ax.set_title('BLEU scores of finetuned models')
 ax.set_xlabel('Language Codes')
@@ -24,7 +24,8 @@ ax.set_ylabel('BLEU Score')
 v = 18.55
 ax.plot([ax.get_xlim()[0], ax.get_xlim()[-1]], [v, v],
             ls='--', c='k')
-ax.text(ax.get_xlim()[-1]-2, v+0.2, f"Base Model = {v}")
+ax.text(ax.get_xlim()[-1]+0.1, v, f"Base Model = {v}")
+fig.tight_layout(pad=1)
 plt.savefig("test.png")
 plt.show()
 
