@@ -14,11 +14,12 @@ conda activate nlpa4
 
 export BS=64
 export GAS=1
-export m=Helsinki-NLP/opus-mt-zh-en
+export m=Helsinki-NLP/opus-mt-ar-en
 export MAX_LEN=128
 export MAX_TGT_LEN=128 
-export OUT_DIR=models_zh-en
+export OUT_DIR=models_big_ar-en
 export TOK_EN_DIR=${PWD}/hf_tok_en
+export NCCL_IB_DISABLE=1
 
 python transformers/examples/legacy/seq2seq/finetune_trainer.py \
     --tokenizer_name $m --model_name_or_path $m \

@@ -1,0 +1,22 @@
+{
+    "epoch": 10.0,
+    "test_bleu": 9.3644,
+    "test_gen_len": 8.5,
+    "test_loss": 2.453,
+    "test_n_objs": -1,
+    "test_runtime": 71.9487,
+    "test_samples_per_second": 67.896,
+    "test_steps_per_second": 4.253,
+    "train_loss": 2.542600892524612,
+    "train_n_objs": -1,
+    "train_runtime": 702.4731,
+    "train_samples_per_second": 243.355,
+    "train_steps_per_second": 15.218,
+    "val_bleu": 9.0105,
+    "val_gen_len": 8.6,
+    "val_loss": 2.398,
+    "val_n_objs": -1,
+    "val_runtime": 39.1368,
+    "val_samples_per_second": 62.371,
+    "val_steps_per_second": 3.909
+}
